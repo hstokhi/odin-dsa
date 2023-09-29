@@ -34,10 +34,21 @@ const Tree = class {
     }
 
     insert(value, start = this.root) {
-        if (start === null) { start = new Node(value); return start }
-        if (start.value > value) { this.insert(value, start.left) }
-        else { this.insert(value, start.right) }
+        if (start === null) { 
+            start = new Node(value); 
+            return start; 
+        }
+        if (start.data > value) { 
+            start.left = this.insert(value, start.left); 
+        }
+        else { 
+            start.right = this.insert(value, start.right); 
+        }
         return start;
+    }
+
+    delete(value) {
+
     }
 
 }
@@ -57,8 +68,9 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 
 const tree = new Tree([1,2,3,4,5,6,7]);
-prettyPrint(tree.root)
-const binaryTree = tree.buildTree(tree.array);
-prettyPrint(tree.root)
+//prettyPrint(tree.root);
+tree.buildTree(tree.array);
+//prettyPrint(tree.root);
+tree.insert(8);
 tree.insert(5);
-prettyPrint(tree.root)
+prettyPrint(tree.root);
